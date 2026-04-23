@@ -125,6 +125,53 @@ h3 {
   color: #9ca3af;
 }
 
+/* SEE MORE + FADE EFFECT */
+#moreText {
+  position: relative;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+#moreText.expanded {
+  max-height: 800px;
+}
+
+#moreText::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 15, 25, 0),
+    rgba(11, 15, 25, 1)
+  );
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#moreText.expanded::after {
+  opacity: 0;
+}
+
+.see-more {
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #38bdf8;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -133,7 +180,6 @@ footer {
   border-top: 1px solid #1f2937;
   color: #6b7280;
 }
-
 </style>
 </head>
 
@@ -161,15 +207,26 @@ footer {
 
 <section id="about">
   <h3>About Me</h3>
+
   <p>
     I am a versatile IT professional and Computing graduate with hands-on experience across IT support, network administration, system troubleshooting, and web development. I have worked in both field and office-based environments, providing technical support to users, maintaining IT systems, and ensuring reliable day-to-day operations of business infrastructure.
-    <br><br>
-    My experience includes troubleshooting hardware and software issues, supporting LAN/WAN environments, configuring and administering Microsoft 365 systems, managing user accounts, and ensuring effective service delivery in fast-paced IT environments. I also have exposure to basic cybersecurity practices, system monitoring, and IT service continuity processes.
-    <br><br>
-    In addition to IT support, I have developed practical software and web development skills using HTML, CSS, and JavaScript. I have built and deployed real-world projects including a professional portfolio website and a data-driven spike prediction web application, demonstrating problem-solving, logical thinking, and frontend development capability.
-    <br><br>
-    I am passionate about technology, digital transformation, and building reliable systems that improve efficiency and user experience. I am seeking opportunities across IT Support, Network Administration, Systems Support, Cybersecurity, and Web Development where I can contribute value while continuing to grow my technical expertise.
   </p>
+
+  <div id="moreText">
+    <p>
+      My experience includes troubleshooting hardware and software issues, supporting LAN/WAN environments, configuring and administering Microsoft 365 systems, managing user accounts, and ensuring effective service delivery in fast-paced IT environments. I also have exposure to basic cybersecurity practices, system monitoring, and IT service continuity processes.
+    </p>
+
+    <p>
+      In addition to IT support, I have developed practical software and web development skills using HTML, CSS, and JavaScript. I have built and deployed real-world projects including a professional portfolio website and a data-driven spike prediction web application, demonstrating problem-solving, logical thinking, and frontend development capability.
+    </p>
+
+    <p>
+      I am passionate about technology, digital transformation, and building reliable systems that improve efficiency and user experience. I am seeking opportunities across IT Support, Network Administration, Systems Support, Cybersecurity, and Web Development where I can contribute value while continuing to grow my technical expertise.
+    </p>
+  </div>
+
+  <button id="toggleBtn" class="see-more">See More</button>
 </section>
 
 <section id="skills">
@@ -190,18 +247,18 @@ footer {
 
     <div class="card">
       <h4>Portfolio Website</h4>
-      <p>Developed a fully responsive professional portfolio website to showcase IT support, networking, and software development skills. The platform highlights real-world technical experience, project work, and system troubleshooting capabilities, and is hosted using GitHub Pages.</p>
+      <p>Developed a fully responsive professional portfolio website to showcase IT support, networking, and software development skills.</p>
     </div>
 
-     <div class="card">
+    <div class="card">
       <h4>Spike Predictor App</h4>
-      <p>Designed and developed a JavaScript-based web application that analyses input data and predicts spikes using logical computation. The project demonstrates frontend development skills, analytical thinking, and the ability to build interactive data-driven tools.</p>
+      <p>Designed and developed a JavaScript-based web application that analyses input data and predicts spikes using logical computation.</p>
       <a href="https://lmmatheo.github.io/spike-predictor/" target="_blank">View Live Project</a>
     </div>
     
     <div class="card">
       <h4>Smart Meter Systems</h4>
-      <p>Installed, configured, and supported smart prepaid water metering systems in field environments. Responsibilities included troubleshooting connectivity issues, ensuring device communication stability, and supporting end-user technical operations.</p>
+      <p>Installed, configured, and supported smart prepaid water metering systems in field environments.</p>
     </div>
 
   </div>
@@ -216,6 +273,21 @@ footer {
 <footer>
   <p>© 2026 Matlhogonolo Lame Matheo</p>
 </footer>
+
+<script>
+const btn = document.getElementById("toggleBtn");
+const moreText = document.getElementById("moreText");
+
+btn.addEventListener("click", () => {
+  moreText.classList.toggle("expanded");
+
+  if (moreText.classList.contains("expanded")) {
+    btn.textContent = "See Less";
+  } else {
+    btn.textContent = "See More";
+  }
+});
+</script>
 
 </body>
 </html>
